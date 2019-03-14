@@ -1,11 +1,11 @@
-/**
- * @author Binay
- * To Test Redirection Scenario please input in this format
- */
-
 import java.io.*;
 import java.net.*;
 
+/**
+ * Http Client
+ *
+ * @author Binay
+ */
 public class Client {
     private String method;
     private String methodOption = null;
@@ -39,6 +39,11 @@ public class Client {
         }
     }
 
+    /**
+     * To set HTTP request Parameters according to the input command
+     *
+     * @param inputParameters command line input parameters
+     */
     private void setHttpParameters(String[] inputParameters) {
         method = inputParameters[0];
 
@@ -86,6 +91,11 @@ public class Client {
             methodOption = inputParameters[1];
     }
 
+    /**
+     * Function to display help for the HTTP application
+     *
+     * @param inputParametersLength
+     */
     private void helpInformationPrint(int inputParametersLength) {
         if (inputParametersLength == 1) {
             System.out.println("httpc is a curl-like application but supports HTTP protocol only.\n"
@@ -114,12 +124,18 @@ public class Client {
         }
     }
 
+    /**
+     * To send get request
+     */
     private void getMethod() {
 
         InputStream inputStream = sendRequest("GET");
         readServerResponse(true, inputStream);
     }
 
+    /**
+     * To send post request
+     */
     private void postMethod() {
         if (filePath != null) {
             readInlineDataFromFile();
@@ -129,6 +145,9 @@ public class Client {
 
     }
 
+    /**
+     * Read inline data from a file
+     */
     private void readInlineDataFromFile() {
         String currentLine;
 
@@ -150,6 +169,12 @@ public class Client {
         }
     }
 
+    /**
+     * To send the HTTP request
+     *
+     * @param method contains "GET" for get request and "POST" for post request
+     * @return InputStream containing response
+     */
     private InputStream sendRequest(String method) {
         Socket socket;
 
@@ -179,12 +204,19 @@ public class Client {
         }
     }
 
+    /**
+     * To read the HTTP response
+     *
+     * @param getResponse contains true for get response and false for post response
+     * @param inputStream containing response
+     */
     private void readServerResponse(Boolean getResponse, InputStream inputStream) {
         String textFromServer;
 
-        //IF Server response has to be written in output file
         BufferedWriter output = null;
         try {
+
+            //IF Server response has to be written in output file
             if (outputFileName != null) {
                 FileWriter file = new FileWriter(outputFileName + ".txt", true);
                 output = new BufferedWriter(file);
