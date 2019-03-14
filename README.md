@@ -26,7 +26,10 @@ Post executes a HTTP POST request for a given URL with inline data or from file.
    -f file        Associates the content of a file to the body HTTP POST request. 
     Either [-d] or [-f] can be used but not both. 
  
-
+Bonus work:
+  –o filename, which allow the HTTP client to write the body of the response to the specified file instead of the console.
+   redirection option  
+  
 Testing Commands
 1) java -jar httpc.jar help
 2) java -jar httpc.jar help get
