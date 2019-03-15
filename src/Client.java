@@ -17,6 +17,7 @@ public class Client {
     private String hostName = null;
     private Boolean verboseOption = false;
     private String userAgent = "Concordia-HTTP/1.0";
+    private int serverPortNo = 80;
 
     public static void main(String[] args) {
 
@@ -180,7 +181,7 @@ public class Client {
 
         try {
             InetAddress addr = InetAddress.getByName(hostName);
-            socket = new Socket(addr, 80);
+            socket = new Socket(addr,serverPortNo);
 
             BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
